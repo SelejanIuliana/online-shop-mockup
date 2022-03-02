@@ -33,6 +33,14 @@ public class Customer {
     public void setId(int id){
         this.id=id;
     }
+    public String getEmail(){return  this.email;}
+    public void setEmail(String email){this.email=email;}
+    public String getPassword(){return this.password;}
+    public void setPassword(String password){this.password=password;}
+    public String getFull_name(){return this.full_name;}
+    public void setFull_name(String full_name){
+        this.full_name=full_name;
+    }
     public String save(){
         String text="";
         text+=this.id+","+this.email+","+this.password+","+this.full_name;
