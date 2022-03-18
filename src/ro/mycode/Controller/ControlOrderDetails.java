@@ -41,7 +41,7 @@ public class ControlOrderDetails {
             System.out.println(orderDetails.get(i).description());
         }
     }
-    public void addCustomer(OrderDetails orderDetails){
+    public void addOrderDetails(OrderDetails orderDetails){
         this.orderDetails.add(orderDetails);
     }
 
@@ -90,16 +90,7 @@ public class ControlOrderDetails {
         }
     }
 
-    public ArrayList<OrderDetails>  listaOrderDetails(int personId){
-        ArrayList<OrderDetails>orderDetails=  new ArrayList<>();
 
-        for (int i=0; i<orderDetails.size();i++){
-            if(orderDetails.get(i).getId()==personId){
-                orderDetails.add(orderDetails.get(i));
-            }
-        }
-        return orderDetails;
-    }
 
     public String toSave(){
         String text="";
@@ -120,6 +111,22 @@ public class ControlOrderDetails {
             e.printStackTrace();
         }
     }
+    //todo funtctie ce primeste ca parametru un orderiD si retunreaza o lista
+    //todo: cu detaliile ce contin comanda respectiva
+
+
+    public  ArrayList<OrderDetails> getByOrderId(int orderId){
+
+         ArrayList<OrderDetails> cos=new ArrayList<>();
+         for(int i= 0; i<this.orderDetails.size();i++){
+
+             if(orderDetails.get(i).getOrder_id()==orderId){
+                 cos.add(orderDetails.get(i));
+             }
+         }
+         return orderDetails;
+    }
+
     public OrderDetails getbyid(int id){
         for (int i=0; i<orderDetails.size();i++){
             if(orderDetails.get(i).getId()==id){
@@ -128,6 +135,15 @@ public class ControlOrderDetails {
         }
         return null;
     }
+    public OrderDetails gettipimprumut(int id){
+        for (OrderDetails m: orderDetails){
+            if(m.getProduct_id()==id){
+                return m;
+            }
+        }
+        return null;
+    }
+
     public boolean isid(int id){
         for(int i=0; i<orderDetails.size();i++){
             if(orderDetails.get(i).getId()==id){
@@ -144,6 +160,27 @@ public class ControlOrderDetails {
     public  int size(){
 
         return this.orderDetails.size();
+    }
+    public int total(int id, int nr) {
+        int nrnou=0;
+        for (int i = 0; i < orderDetails.size(); i++) {
+            if (orderDetails.get(i).getQuantity()<nr && orderDetails.get(i).getId()==id) {
+                nrnou = orderDetails.get(i).getPrice()*nr;
+
+            }
+        }
+        return nrnou;
+    }
+    public int cantitaterRamasa(int id, int nr) {
+            int nrnou=0;
+            for (int i = 0; i < orderDetails.size(); i++) {
+                if (orderDetails.get(i).getQuantity()<nr && orderDetails.get(i).getId()==id) {
+                    nrnou = orderDetails.get(i).getQuantity()-nr;
+
+                }
+            }
+            return nrnou;
+
     }
 }
 

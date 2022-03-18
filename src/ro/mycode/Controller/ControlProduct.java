@@ -41,7 +41,7 @@ public class ControlProduct {
             System.out.println(products.get(i).description());
         }
     }
-    public void addCustomer(Product product){
+    public void addProduct(Product product){
         this.products.add(product);
     }
 
@@ -123,6 +123,34 @@ public class ControlProduct {
     public Product getbyid(int id){
         for (int i=0; i<products.size();i++){
             if(products.get(i).getId()==id){
+                return products.get(i);
+            }
+        }
+        return null;
+    }
+
+    public boolean isStock(int nr){
+        for (int i=0; i<products.size();i++){
+            if (products.get(i).getStock()>nr){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public boolean isNume(String nume){
+        for (int i=0; i<products.size();i++){
+            if (products.get(i).getName().equals(nume)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Product product(String nume){
+        for (int i=0;i<products.size();i++){
+            if(products.get(i).getName().equals(nume)){
                 return products.get(i);
             }
         }
